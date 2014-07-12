@@ -5,8 +5,16 @@ Base image that exposes an [`orientdb`][orientdb] instance, in ports `2424` and
 
 ## Running
 
+To execute the image:
+
 ```bash
-$ docker run -d --name orientdb -p 2424:2424 -p 2480:2480 joaodubas/orientdb:latest
+docker run -d --name orientdb joaodubas/orientdb:latest
+```
+
+It's also possible to redirect `orientdb` ports:
+
+```bash
+docker run -d --name orientdb -p 2424:2424 -p 2480:2480 joaodubas/orientdb:latest
 ```
 
 ## LICENSE
