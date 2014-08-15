@@ -11,15 +11,14 @@ RUN apt-get -y -qq update \
 # install orientdb
 ENV ROOT /opt/downloads
 ENV ORIENT_URL http://www.orientdb.org/portal/function/portal/download/unknown@unknown.com
-ENV ORIENT_VERSION orientdb-community-1.7.7
+ENV ORIENT_VERSION orientdb-community-1.7.8
 RUN mkdir ${ROOT} \
     && cd ${ROOT} \
     && wget ${ORIENT_URL}/-/-/-/-/-/${ORIENT_VERSION}.tar.gz/false/false/linux \
     && tar -xzf linux \
-    && ln -s ${ROOT}/${ORIENT_VERSION} ${ROOT}/orientdb
-    
-RUN ln -s ${ROOT}/orientdb/bin/* /usr/local/bin/
-RUN mkdir /usr/local/log
+    && ln -s ${ROOT}/${ORIENT_VERSION} ${ROOT}/orientdb \
+    && ln -s ${ROOT}/orientdb/bin/* /usr/local/bin/ \
+    && mkdir /usr/local/log
 
 # cleanup
 RUN apt-get -y -qq --force-yes clean \
