@@ -11,7 +11,7 @@ RUN apt-get -y -qq update \
 # install orientdb
 ENV ROOT /opt/downloads
 ENV ORIENT_URL http://www.orientdb.org/portal/function/portal/download/unknown@unknown.com
-ENV ORIENT_VERSION orientdb-community-1.7.8
+ENV ORIENT_VERSION orientdb-community-1.7.9
 RUN mkdir ${ROOT} \
     && cd ${ROOT} \
     && wget ${ORIENT_URL}/-/-/-/-/-/${ORIENT_VERSION}.tar.gz/false/false/linux \
