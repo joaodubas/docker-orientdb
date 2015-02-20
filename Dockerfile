@@ -6,16 +6,16 @@ MAINTAINER Joao Paulo Dubas "joao.dubas@gmail.com"
 
 # install system deps
 RUN apt-get -y -qq update \
-    && apt-get -y -qq install wget
+    && apt-get -y -qq install curl
 
 # install orientdb
 ENV ROOT /opt/downloads
-ENV ORIENT_URL http://www.orientdb.org/portal/function/portal/download/unknown@unknown.com
-ENV ORIENT_VERSION orientdb-community-1.7.9
+ENV ORIENT_VERSION orientdb-community-2.0.2
+ENV ORIENT_URL http://www.orientechnologies.com/download.php?email=unknown@unknown.com&file=${ORIENT_VERSION}.tar.gz&os=linux
 RUN mkdir ${ROOT} \
     && cd ${ROOT} \
-    && wget ${ORIENT_URL}/-/-/-/-/-/${ORIENT_VERSION}.tar.gz/false/false/linux \
-    && tar -xzf linux \
+    && curl ${ORIENT_URL} > ${ORIENT_VERSION}.tar.gz \
+    && tar -xzf ${ORIENT_VERSION}.tar.gz \
     && ln -s ${ROOT}/${ORIENT_VERSION} ${ROOT}/orientdb \
     && ln -s ${ROOT}/orientdb/bin/* /usr/local/bin/ \
     && mkdir /usr/local/log
