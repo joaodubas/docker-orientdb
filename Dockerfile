@@ -10,7 +10,7 @@ RUN apt-get -y -qq update \
 
 # install orientdb
 ENV ROOT /opt/downloads
-ENV ORIENT_VERSION orientdb-community-2.0.2
+ENV ORIENT_VERSION orientdb-community-2.0.3
 ENV ORIENT_URL http://www.orientechnologies.com/download.php?email=unknown@unknown.com&file=${ORIENT_VERSION}.tar.gz&os=linux
 RUN mkdir ${ROOT} \
     && cd ${ROOT} \
