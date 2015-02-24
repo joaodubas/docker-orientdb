@@ -1,7 +1,7 @@
 # OrientDB image
 
 Base image that exposes an [`orientdb`][orientdb] instance, in ports `2424` and
-`2480`.
+`2480`, using the default root password _0r13ntDB_.
 
 ## Running
 
@@ -16,6 +16,14 @@ It's also possible to redirect `orientdb` ports:
 ```bash
 docker run -d --name orientdb -p 2424:2424 -p 2480:2480 joaodubas/orientdb:latest
 ```
+
+To use another root password, redefine the environment variable
+`ORIENTDB_ROOT_PASSWORD`:
+
+```bash
+docker run -d --name orientdb -e ORIENTDB_ROOT_PASSWORD=mysecurepassword joaodubas/orientdb:latest
+```
+
 
 ## LICENSE
 
