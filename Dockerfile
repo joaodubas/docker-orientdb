@@ -4,25 +4,16 @@
 FROM joaodubas/openjdk:latest
 MAINTAINER Joao Paulo Dubas "joao.dubas@gmail.com"
 
-# install system deps
-RUN apt-get -y -qq update \
-    && apt-get -y -qq install curl
-
 # install orientdb
-ENV ROOT /opt/downloads
-ENV ORIENT_VERSION orientdb-community-2.0.3
-ENV ORIENT_URL http://www.orientechnologies.com/download.php?email=unknown@unknown.com&file=${ORIENT_VERSION}.tar.gz&os=linux
-RUN mkdir ${ROOT} \
-    && cd ${ROOT} \
-    && curl ${ORIENT_URL} > ${ORIENT_VERSION}.tar.gz \
-    && tar -xzf ${ORIENT_VERSION}.tar.gz \
-    && ln -s ${ROOT}/${ORIENT_VERSION} ${ROOT}/orientdb \
-    && ln -s ${ROOT}/orientdb/bin/* /usr/local/bin/ \
-    && mkdir /usr/local/log
-
-# cleanup
-RUN apt-get -y -qq --force-yes clean \
-    && rm -rf /opt/downloads/linux /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ENV ORIENTDB_VERSION orientdb-community-2.0.3
+ENV ORIENTDB_URL http://www.orientechnologies.com/download.php?email=unknown@unknown.com&file=${ORIENTDB_VERSION}.tar.gz&os=linux
+ADD ${ORIENTDB_URL} /usr/local/src/orientdb-community.tar.gz
+RUN cd /usr/local/src \
+    && mkdir /usr/local/log \
+    && mkdir ${PWD}/orientdb \
+    && tar -xzf orientdb-community.tar.gz -C ${PWD}/orientdb \
+    && ln -s ${PWD}/orientdb/bin/* /usr/local/bin/ \
+    && rm ${PWD}/orientdb-community.tar.gz
 
 # configure system
 EXPOSE 2424
