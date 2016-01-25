@@ -1,7 +1,14 @@
 # OrientDB image
 
-Base image that exposes an [`orientdb`][orientdb] instance, in ports `2424` and
-`2480`, using the default root password _0r13ntDB_.
+Base image that exposes an [`orientdb`][orientdb] instance.
+
+**Version:** 2.1.9 Community  
+**Ports exposed:**  
+
+* `2424` for binary interface
+* `2480` for HTTP interface
+
+**Default root password:** `0r13ntDB`
 
 ## Running
 
